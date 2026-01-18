@@ -1,4 +1,7 @@
-  import { IoCodeSharp } from 'react-icons/io5';
+import { IoCodeSharp } from 'react-icons/io5';
+import { FiDatabase } from 'react-icons/fi';
+import { MdCloudQueue } from 'react-icons/md';
+import { GoPeople } from 'react-icons/go';
 
 const About = () => {
   return (
@@ -34,7 +37,7 @@ const About = () => {
             </ul>
           </div>
         </div>
-        <div className='grid lg:grid-cols-2 gap-5 md:grid-cols-1'>
+        <div className='grid lg:grid-cols-2 gap-5 md:grid-cols-2'>
           <div className='border rounded-2xl p-6'>
             <div className='flex flex-col items-center'>
               <IoCodeSharp size={40} />
@@ -47,7 +50,7 @@ const About = () => {
 
           <div className='border rounded-2xl p-6'>
             <div className='flex flex-col items-center'>
-              <IoCodeSharp size={40} />
+              <FiDatabase size={40} />
               <p className='text-center'>Frontend Development</p>
               <p className='text-center text-xs'>
                 Expert in React, TypeScript, and modern CSS frameworks
@@ -56,7 +59,7 @@ const About = () => {
           </div>
           <div className='border rounded-2xl p-6'>
             <div className='flex flex-col items-center'>
-              <IoCodeSharp size={40} />
+              <MdCloudQueue size={40} />
               <p className='text-center'>Frontend Development</p>
               <p className='text-center text-xs'>
                 Expert in React, TypeScript, and modern CSS frameworks
@@ -65,7 +68,7 @@ const About = () => {
           </div>
           <div className='border rounded-2xl p-6'>
             <div className='flex flex-col items-center'>
-              <IoCodeSharp size={40} />
+              <GoPeople size={40} />
               <p className='text-center'>Frontend Development</p>
               <p className='text-center text-xs'>
                 Expert in React, TypeScript, and modern CSS frameworks
