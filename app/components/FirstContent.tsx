@@ -1,15 +1,38 @@
 
+'use client'
+
+import { useEffect, useState} from 'react';
 import { LuLinkedin, LuGithub, LuMail } from 'react-icons/lu';
 
-
 const FirstContent = () => {
+  
+  const text = 'FullStack Developer';
+  const delay = 500;
+
+  const [screenText, setScreenText] = useState<String>('');
+  const [index, setIndex] = useState(0)
+
+  useEffect(()=>{
+    if(index<text.length){
+      const timeout = setTimeout(() => {
+        
+        
+
+      }, delay);
+
+    }
+    
+
+  }, [screenText, index])
+
   return (
     <main className=''>
       <div className='flex flex-col flex-1 justify-center items-center gap-5'>
         <span className='text-3xl text-white bg-black p-5 rounded-full w-fit'>
           SR
         </span>
-        <div className='text-4xl font-bold w-fit'>FullStack Developer</div>
+        
+        <div className='text-4xl font-bold w-fit'>{text}</div>
 
         <div className='w-1/2 lg:w-1/4 text-[#9E9E9E] text-center'>
           I build modern web applications with React, Node.js, and cloud
@@ -34,6 +57,7 @@ const FirstContent = () => {
             hover:scale-110 hover:bg-[#E6E3E3]
             active:scale-150 cursor-pointer'
           >
+
             <LuGithub />
           </button>
           <button
