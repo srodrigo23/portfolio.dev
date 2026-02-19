@@ -74,17 +74,7 @@ const About = () => {
           </div>
         </div>
 
-        <div className='flex flex-col gap-2'>
-          <p className='font-medium'>GitHub Activity</p>
-          <Image
-            src='https://ghchart.rshah.org/srodrigo23'
-            width={800}
-            height={128}
-            alt='GitHub activity chart'
-            className='w-full h-auto'
-            unoptimized
-          />
-        </div>
+        
       </div>
     </section>
   );

@@ -1,8 +1,10 @@
+import Image from "next/image";
+
 export default function Skills(){
   return (
     <>
-      <section className='container mx-auto flex flex-col items-center'>
-        <div className='text-4xl font-bold'>Skills & Technologies</div>
+      <section className='container mx-auto flex flex-col items-center justify-center h-screen '>
+        <div className='text-2xl font-bold'>Skills & Technologies</div>
         <div className='text-center text-[#9E9E9E]'>
           A comprehensive toolkit for building modern, scalable applications
           across the entire technology stack.
@@ -34,6 +36,18 @@ export default function Skills(){
           <div>
             <div>Mobile & Other</div>
           </div>
+        </div>
+
+        <div className='flex flex-col gap-2'>
+          <p className='font-medium'>GitHub Activity</p>
+          <Image
+            src='https://ghchart.rshah.org/srodrigo23'
+            width={800}
+            height={128}
+            alt='GitHub activity chart'
+            className='w-full h-auto'
+            unoptimized
+          />
         </div>
       </section>
     </>

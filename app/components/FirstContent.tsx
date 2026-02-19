@@ -26,9 +26,9 @@ const FirstContent = () => {
   }, [screenText, index])
 
   return (
-    <main className=''>
+    <main className='flex h-screen'>
       <div className='flex flex-col flex-1 justify-center items-center gap-5'>
-        <span className='text-3xl text-white bg-black p-5 rounded-full w-fit'>
+        <span className='text-white bg-black p-5 rounded-full w-40 h-40 flex items-center justify-center text-6xl font-semibold'>
           SR
         </span>
         
