@@ -5,8 +5,7 @@ import { GoPeople } from 'react-icons/go';
 import Image from 'next/image';
 
 const skills = [
-  {
-    icon: <IoCodeSharp size={40} />,
+  {    icon: <IoCodeSharp size={40} />,
     title: 'Frontend Development',
     description: 'Expert in React, TypeScript, and modern CSS frameworks',
   },
@@ -26,6 +25,7 @@ const skills = [
     description: 'Leading agile teams and mentoring junior developers',
   },
 ];
+
 
 const About = () => {
   return (

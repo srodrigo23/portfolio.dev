@@ -22,6 +22,18 @@ const FirstContent = () => {
     }
   }, [screenText, index])
 
+
+  /**
+   * Method to download my cv from static files, after that I'll implement download from supabase
+   * storage
+   *
+   */
+  const downloadCV = () =>{
+    console.log('Download...')
+    
+
+  }
+
   return (
     <main className='flex h-screen'>
       <div className='flex flex-col flex-1 justify-center items-center gap-5'>
@@ -29,7 +41,7 @@ const FirstContent = () => {
         <span className='text-white bg-black p-5 rounded-full w-40 h-40 flex items-center justify-center text-6xl font-semibold'>
           SR
         </span>
-        
+
         {/* Text with useState effect  */}
         <div className='text-4xl font-bold w-fit'>{text}</div>
 
@@ -40,9 +52,14 @@ const FirstContent = () => {
         </div>
 
         <div className=' flex gap-3'>
-          <button className='rounded-md bg-black text-white font-bold text-xs px-4 py-2 border-[#243c5a] cursor-pointer'>
-            View my Work
-          </button>
+          <a
+            className='rounded-md bg-black text-white font-bold text-xs px-4 py-2 border-[#243c5a] cursor-pointer'
+            // onClick={downloadCV}
+            href='files/cv_en.pdf'
+            download='cv.pdf'
+          >
+            Download CV
+          </a>
 
           <button className='rounded-md border font-bold text-xs px-4 py-2 border-[#243c5a] cursor-pointer hover:bg-[#E6E3E3]'>
             Get In Touch
@@ -56,7 +73,6 @@ const FirstContent = () => {
             hover:scale-110 hover:bg-[#E6E3E3]
             active:scale-150 cursor-pointer'
           >
-
             <LuGithub />
           </button>
           <button
