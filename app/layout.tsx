@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, IBM_Plex_Mono } from "next/font/google";
+
+
 import "./globals.css";
+
 
 const ibmPexMono = IBM_Plex_Mono({
   // variable:"--",
@@ -29,9 +32,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang='en'>
       <body
-        className={`${ibmPexMono.className} ${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${ibmPexMono.className} ${geistSans.variable} ${geistMono.variable}`}
       >
         {children}
       </body>

@@ -2,7 +2,7 @@ import { IoCodeSharp } from 'react-icons/io5';
 import { FiDatabase } from 'react-icons/fi';
 import { MdCloudQueue } from 'react-icons/md';
 import { GoPeople } from 'react-icons/go';
-import Image from 'next/image';
+// import Image from 'next/image';
 
 const skills = [
   {    icon: <IoCodeSharp size={40} />,

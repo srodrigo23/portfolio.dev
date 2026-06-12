@@ -1,16 +1,16 @@
-import Image from "next/image";
-import MyNavbar from "./components/MyNavBar";
-import FirstContent from "./components/FirstContent";
-import About from "./components/About";
+
+import MyNavbar from "./components/navigationBar";
+import FirstContent from "./components/mainContent";
+import About from "./components/about";
 import Skills from "./components/skills";
-import { ReportView } from "./components/ReportView";
+// import { ReportView } from "./components/reportView";
 
 
 export default function Home() {
   return (
 
     <>
-      <ReportView/>
+      {/* <ReportView/> */}
       <MyNavbar/>
       <FirstContent/>
       <About/>
