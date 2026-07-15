@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { useEffect, useState} from 'react';
 import { LuLinkedin, LuGithub, LuMail } from 'react-icons/lu';
 
-const FirstContent = () => {
+export const MainContent = () => {
   
   const delay = 200;
   const firstName = 'SERGIO RODRIGO';
@@ -53,8 +53,7 @@ const FirstContent = () => {
 
   return (
     <main className='flex h-screen'>
-
-      <div className='flex flex-col flex-1 justify-center items-center gap-5'>
+      <div className='flex flex-col justify-center items-center gap-5'>
         <div className='relative rounded-full w-60 overflow-hidden'>
           <Image
             className='rounded-full object-cover'
@@ -63,7 +62,7 @@ const FirstContent = () => {
             height={500}
             alt='photo-portait'
           />
-          <div className='absolute inset-x-0 bottom-0 h-1/3 bg-linear-to-t from-black/90 to-transparent'/>
+          <div className='absolute inset-x-0 bottom-0 h-1/3 bg-linear-to-t from-black/90 to-transparent' />
         </div>
 
         {/* Text with useState effect  */}
@@ -71,7 +70,7 @@ const FirstContent = () => {
           <div className='text-4xl font-mono font-bold w-fit'>{firstName}</div>
         </div>
 
-        <div className='w-1/2 lg:w-1/4 text-[#9E9E9E] text-center'>
+        <div className=' px-5 xl:w-1/2 md:w-2/3 text-[#9E9E9E] text-center'>
           I build modern web applications with React, Node.js, and cloud
           technologies. Passionate about creating scalable solutions and
           exceptional user experiences.
@@ -109,5 +108,3 @@ const FirstContent = () => {
     </main>
   );
 };
-
-export default FirstContent;

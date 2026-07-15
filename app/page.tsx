@@ -1,6 +1,7 @@
 
 import MyNavbar from "./components/navigationBar";
-import FirstContent from "./components/mainContent";
+import { MainContent } from "./components/mainContent"
+
 import About from "./components/about";
 import Skills from "./components/skills";
 // import { ReportView } from "./components/reportView";
@@ -8,14 +9,14 @@ import Skills from "./components/skills";
 
 export default function Home() {
   return (
-
     <>
       {/* <ReportView/> */}
-      <MyNavbar/>
-      <FirstContent/>
-      <About/>
-      <Skills/>
+      <MyNavbar />
+      <div className='container mx-auto'>
+        <MainContent />
+        <About />
+        <Skills />
+      </div>
     </>
-
   );
 }

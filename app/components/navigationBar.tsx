@@ -22,7 +22,7 @@ export default function MyNavbar() {
     <header className='flex w-full items-center py-5 border-b border-white/10 bg-black/80 backdrop-blur-md text-white sticky top-0 z-50 h-15 '>
       <div className='container mx-auto flex justify-between items-center px-4'>
         <div
-          className={` font-extrabold md:text-2xl cursor-pointer text-emerald-500 `}
+          className={`${sredaFont.className} font-bold md:text-2xl cursor-pointer text-amber-300 `}
         >
           srodrigo23.dev
         </div>
