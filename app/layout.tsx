@@ -47,16 +47,23 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
+/**
+ * Runs before paint: applies the saved theme (or the system preference)
+ * so there is no flash of the wrong theme on load.
+ */
+const themeInitScript = `(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.dataset.theme=t}catch(e){}})()`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en'>
+    <html lang='en' suppressHydrationWarning>
       <body
         className={`${ibmPexMono.className} ${geistSans.variable} ${geistMono.variable}`}
       >
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         {children}
       </body>
     </html>

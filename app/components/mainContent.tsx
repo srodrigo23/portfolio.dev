@@ -94,7 +94,7 @@ export const MainContent = () => {
 
           <div className='flex flex-wrap justify-center gap-3'>
             <a
-              className='rounded-md bg-accent text-black font-bold py-2 px-4 cursor-pointer flex items-center gap-2 transition-all duration-200 ease-out hover:scale-105 active:scale-95'
+              className='rounded-md bg-accent-solid text-accent-fg font-bold py-2 px-4 cursor-pointer flex items-center gap-2 transition-all duration-200 ease-out hover:scale-105 active:scale-95'
               href={profile.cvFile}
               download='sergio_cardenas_cv.pdf'
             >

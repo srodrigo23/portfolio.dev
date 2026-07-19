@@ -19,7 +19,7 @@ const Projects = () => {
           <Reveal key={project.title} from={idx % 2 === 0 ? 'left' : 'right'} delay={(idx % 2) * 100}>
             <article className='group h-full flex flex-col border border-line bg-panel rounded-2xl overflow-hidden transition-all duration-300 hover:border-accent/60 hover:-translate-y-1'>
               {/* header band */}
-              <div className='flex items-center justify-between px-6 py-4 border-b border-line bg-black/40'>
+              <div className='flex items-center justify-between px-6 py-4 border-b border-line bg-background/60'>
                 <p className='text-accent font-bold text-lg' aria-hidden='true'>
                   {String(idx + 1).padStart(2, '0')}
                 </p>

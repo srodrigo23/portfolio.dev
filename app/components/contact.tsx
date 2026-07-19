@@ -82,7 +82,7 @@ const Contact = () => {
         <Reveal delay={contactItems.length * 80}>
           <a
             href={`mailto:${profile.email}?subject=Hello%20Sergio`}
-            className='flex h-full items-center justify-center gap-2 rounded-2xl bg-accent text-black font-bold p-5 transition-all duration-300 hover:scale-[1.02] active:scale-95'
+            className='flex h-full items-center justify-center gap-2 rounded-2xl bg-accent-solid text-accent-fg font-bold p-5 transition-all duration-300 hover:scale-[1.02] active:scale-95'
           >
             <LuMail aria-hidden='true' /> Say hello
           </a>
