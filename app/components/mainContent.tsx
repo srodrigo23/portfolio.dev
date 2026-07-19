@@ -1,110 +1,133 @@
-
 'use client'
 
 import Image from 'next/image';
-import { useEffect, useState} from 'react';
-import { LuLinkedin, LuGithub, LuMail } from 'react-icons/lu';
+import { useEffect, useState } from 'react';
+import { LuLinkedin, LuGithub, LuMail, LuDownload, LuMapPin } from 'react-icons/lu';
+import { profile } from '../data/cv';
+import Reveal from './reveal';
+
+const TYPE_DELAY = 90;
 
 export const MainContent = () => {
-  
-  const delay = 200;
-  const firstName = 'SERGIO RODRIGO';
-  const lastName = 'CARDENAS RIVERA';
-  const sizeLogoButtons = 30;
-  
+  const sizeLogoButtons = 26;
 
-  const [screenText, setScreenText] = useState<string>('');
-  const [index, setIndex] = useState(0)
+  // Typewriter: first name types out, then the rest of the hero fades in.
+  const [typedCount, setTypedCount] = useState(0);
+  const doneTyping = typedCount >= profile.firstName.length;
 
-  const optionButtons = [
+  useEffect(() => {
+    if (doneTyping) return;
+    const id = setTimeout(() => setTypedCount((prev) => prev + 1), TYPE_DELAY);
+    return () => clearTimeout(id);
+  }, [typedCount, doneTyping]);
+
+  const socialLinks = [
     {
       icon: <LuGithub size={sizeLogoButtons} />,
-      link: '',
+      link: profile.github,
+      label: 'GitHub profile',
     },
     {
       icon: <LuLinkedin size={sizeLogoButtons} />,
-      link: '',
+      link: profile.linkedin,
+      label: 'LinkedIn profile',
     },
     {
       icon: <LuMail size={sizeLogoButtons} />,
-      link: '',
+      link: `mailto:${profile.email}`,
+      label: `Email ${profile.email}`,
     },
   ];
 
-  useEffect(()=>{
-    // if(index<text.length){
-
-    //   setTimeout(() => {
-    //     setIndex((prev)=>prev + 1)
-    //     // console.log(index)
-    //   }, delay);
-    // }
-  }, [screenText, index])
-
-
-  /**
-   * Method to download my cv from static files, after that I'll implement download from supabase
-   * storage
-   *
-   */
-  const downloadCV = () =>{
-    console.log('Download...')
-  }
-
   return (
-    <main className='flex h-screen'>
-      <div className='flex flex-col justify-center items-center gap-5'>
-        <div className='relative rounded-full w-60 overflow-hidden'>
-          <Image
-            className='rounded-full object-cover'
-            src={'/img/photo_react_developer.webp'}
-            width={500}
-            height={500}
-            alt='photo-portait'
-          />
-          <div className='absolute inset-x-0 bottom-0 h-1/3 bg-linear-to-t from-black/90 to-transparent' />
-        </div>
+    <section id='home' className='flex min-h-[calc(100vh-3.75rem)] items-center'>
+      <div className='w-full flex flex-col justify-center items-center gap-5 px-4 py-16'>
+        <Reveal from='none' once>
+          <div className='relative rounded-full w-44 md:w-56 overflow-hidden ring-2 ring-line'>
+            <Image
+              className='rounded-full object-cover'
+              src='/img/photo_react_developer.webp'
+              width={500}
+              height={500}
+              alt='Portrait of Sergio Rodrigo Cárdenas Rivera'
+              priority
+            />
+            <div className='absolute inset-x-0 bottom-0 h-1/3 bg-linear-to-t from-black/90 to-transparent' />
+          </div>
+        </Reveal>
 
-        {/* Text with useState effect  */}
-        <div>
-          <div className='text-4xl font-mono font-bold w-fit'>{firstName}</div>
-        </div>
-
-        <div className=' px-5 xl:w-1/2 md:w-2/3 text-[#9E9E9E] text-center'>
-          I build modern web applications with React, Node.js, and cloud
-          technologies. Passionate about creating scalable solutions and
-          exceptional user experiences.
-        </div>
-
-        <div className=' flex gap-3'>
-          <a
-            className='rounded-md bg-black text-white font-bold py-2 px-4 border-[#243c5a] cursor-pointer flex items-center transition-all duration-200 ease-out hover:scale-110 active:scale-120'
-            // onClick={downloadCV}
-            href='files/cv_en.pdf'
-            download='cv.pdf'
-          >
-            Download CV
-          </a>
-
-          <button className='rounded-md border font-bold text-sm px-4 py-2 border-[#243c5a] cursor-pointer hover:bg-[#E6E3E3]'>
-            Get In Touch
-          </button>
-        </div>
-
-        <div className=' pt-5 flex gap-3'>
-          {optionButtons.map((el, idx) => (
-            <button
-              key={idx}
-              className='p-3 rounded-lg 
-            transition-all duration-200 ease-out
-            hover:scale-110 hover:bg-[#E6E3E3]
-            active:scale-150 cursor-pointer'
+        <h1 className='text-center'>
+          <span className='block text-3xl md:text-5xl font-mono font-bold tracking-tight'>
+            {profile.firstName.slice(0, typedCount)}
+            <span
+              className={`text-accent ${doneTyping ? 'animate-pulse' : ''}`}
+              aria-hidden='true'
             >
-              {el.icon}
-            </button>
-          ))}
+              _
+            </span>
+          </span>
+          <span
+            className={`block text-lg md:text-2xl font-mono text-muted mt-1 transition-opacity duration-700 ${
+              doneTyping ? 'opacity-100' : 'opacity-0'
+            }`}
+          >
+            {profile.lastName}
+          </span>
+        </h1>
+
+        <div
+          className={`flex flex-col items-center gap-5 transition-all duration-700 ${
+            doneTyping ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          } motion-reduce:transition-none motion-reduce:opacity-100`}
+        >
+          <p className='text-accent text-sm md:text-base tracking-widest'>
+            {`> ${profile.role}`}
+          </p>
+
+          <p className='px-5 xl:w-1/2 md:w-2/3 text-muted text-center'>
+            {profile.tagline}
+          </p>
+
+          <p className='flex items-center gap-1.5 text-sm text-muted'>
+            <LuMapPin aria-hidden='true' /> {profile.location}
+          </p>
+
+          <div className='flex flex-wrap justify-center gap-3'>
+            <a
+              className='rounded-md bg-accent text-black font-bold py-2 px-4 cursor-pointer flex items-center gap-2 transition-all duration-200 ease-out hover:scale-105 active:scale-95'
+              href={profile.cvFile}
+              download='sergio_cardenas_cv.pdf'
+            >
+              <LuDownload aria-hidden='true' /> Download CV
+            </a>
+
+            <a
+              className='rounded-md border border-line font-bold text-sm px-4 py-2 cursor-pointer flex items-center transition-all duration-200 ease-out hover:border-accent hover:text-accent active:scale-95'
+              href='#contact'
+            >
+              Get In Touch
+            </a>
+          </div>
+
+          <div className='pt-2 flex gap-3'>
+            {socialLinks.map((el) => (
+              <a
+                key={el.label}
+                href={el.link}
+                target={el.link.startsWith('http') ? '_blank' : undefined}
+                rel='noopener noreferrer'
+                aria-label={el.label}
+                className='p-3 rounded-lg border border-transparent
+                  transition-all duration-200 ease-out text-muted
+                  hover:text-accent hover:border-line hover:-translate-y-0.5
+                  active:scale-95'
+              >
+                {el.icon}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
-    </main>
+    </section>
   );
 };

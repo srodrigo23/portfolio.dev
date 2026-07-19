@@ -1,5 +1,9 @@
 packages:
   - .
-ignoredBuiltDependencies:
-  - sharp
-  - unrs-resolver
+# pnpm 10+ refuses to run dependency build scripts unless explicitly approved.
+allowBuilds:
+  '@prisma/engines': true # downloads Prisma engine binaries — required
+  esbuild: true # places its platform binary (dep of tsx) — required
+  prisma: true
+  sharp: true # Next.js image optimization
+  unrs-resolver: false # has a prebuilt fallback, build not needed

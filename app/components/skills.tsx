@@ -1,55 +1,54 @@
-import Image from "next/image";
+import Image from 'next/image';
+import { skillGroups } from '../data/cv';
+import Reveal from './reveal';
+import SectionHeading from './sectionHeading';
 
-export default function Skills(){
+export default function Skills() {
   return (
-    <>
-      <section className='container mx-auto flex flex-col items-center justify-center h-screen '>
-        <div className='text-2xl font-bold'>Skills & Technologies</div>
-        <div className='text-center text-[#9E9E9E]'>
-          A comprehensive toolkit for building modern, scalable applications
-          across the entire technology stack.
-        </div>
-        <div className='w-2/3 grid lg:grid-cols-2 gap-5 md:grid-cols-2'>
-          <div>
-            <div>Frontend</div>
-            <div className=''>
-              <span>React</span>
-              <span>Typescript</span>
-              <span>Next.js</span>
-              <span>Vue.js</span>
-              <span>HTML5</span>
-              <span>CSS3</span>
-              <span>Tailwind CSS</span>
-              <span>SASS</span>
-              <span>React</span>
-            </div>
-          </div>
-          <div>
-            <div>Backend</div>
-          </div>
-          <div>
-            <div>Database</div>
-          </div>
-          <div>
-            <div>DevOps & Tools</div>
-          </div>
-          <div>
-            <div>Mobile & Other</div>
-          </div>
-        </div>
+    <section id='skills' className='px-4 py-20'>
+      <Reveal>
+        <SectionHeading
+          slug='skills'
+          title='Skills & Technologies'
+          lede='A toolkit for building modern, scalable applications across the entire stack.'
+        />
+      </Reveal>
 
-        <div className='flex flex-col gap-2'>
-          <p className='font-medium'>GitHub Activity</p>
+      <div className='grid gap-5 sm:grid-cols-2 lg:grid-cols-4'>
+        {skillGroups.map((group, idx) => (
+          <Reveal key={group.title} delay={(idx % 4) * 90}>
+            <div className='h-full border border-line bg-panel rounded-2xl p-5 transition-colors duration-300 hover:border-accent/60'>
+              <h3 className='text-sm text-accent tracking-widest mb-3'>
+                {`// ${group.title}`}
+              </h3>
+              <div className='flex flex-wrap gap-2'>
+                {group.items.map((item) => (
+                  <span
+                    key={item}
+                    className='text-xs border border-line rounded-full px-3 py-1 text-foreground/90'
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+
+      <Reveal className='mt-12 flex flex-col gap-3'>
+        <p className='text-accent text-sm tracking-widest'>{'// github activity'}</p>
+        <div className='border border-line bg-panel rounded-2xl p-4 overflow-x-auto'>
           <Image
-            src='https://ghchart.rshah.org/srodrigo23'
+            src='https://ghchart.rshah.org/fcd34d/srodrigo23'
             width={800}
             height={128}
-            alt='GitHub activity chart'
-            className='w-full h-auto'
+            alt='GitHub contribution chart for srodrigo23'
+            className='w-full min-w-[640px] h-auto'
             unoptimized
           />
         </div>
-      </section>
-    </>
+      </Reveal>
+    </section>
   );
 }

@@ -2,79 +2,74 @@ import { IoCodeSharp } from 'react-icons/io5';
 import { FiDatabase } from 'react-icons/fi';
 import { MdCloudQueue } from 'react-icons/md';
 import { GoPeople } from 'react-icons/go';
-// import Image from 'next/image';
+import { profile } from '../data/cv';
+import Reveal from './reveal';
+import SectionHeading from './sectionHeading';
 
-const skills = [
-  {    icon: <IoCodeSharp size={40} />,
-    title: 'Frontend Development',
-    description: 'Expert in React, TypeScript, and modern CSS frameworks',
+const focusAreas = [
+  {
+    icon: <IoCodeSharp size={36} />,
+    title: 'Full-Stack Development',
+    description: 'React, Next.js, NestJS, Flask and FastAPI — from UI to API',
   },
   {
-    icon: <FiDatabase size={40} />,
-    title: 'Backend Development',
-    description: 'Proficient in Node.js, REST APIs, and relational databases',
+    icon: <FiDatabase size={36} />,
+    title: 'Data & Machine Learning',
+    description: 'Data engineering, scikit-learn and applied ML on real business data',
   },
   {
-    icon: <MdCloudQueue size={40} />,
+    icon: <MdCloudQueue size={36} />,
     title: 'Cloud & DevOps',
-    description: 'Experience with AWS, Docker, and CI/CD pipelines',
+    description: 'AWS (S3, Amplify, RDS, Lambda), Docker and Git workflows',
   },
   {
-    icon: <GoPeople size={40} />,
-    title: 'Team Leadership',
-    description: 'Leading agile teams and mentoring junior developers',
+    icon: <GoPeople size={36} />,
+    title: 'Leadership & Teaching',
+    description: 'Tech lead, university professor and hackathon mentor',
   },
 ];
 
-
 const About = () => {
   return (
-    <section className='container mx-auto px-4 py-10 flex flex-col items-center'>
-      <h2 className='text-4xl font-bold'>About Me</h2>
-      <p className='pb-10 pt-5 w-full sm:w-2/3 lg:w-1/3 text-center text-[#9E9E9E]'>
-        I&apos;m a passionate full stack developer with 5+ years of experience
-        building web applications that solve real-world problems.
-      </p>
+    <section id='about' className='px-4 py-20'>
+      <Reveal>
+        <SectionHeading
+          slug='about'
+          title='About Me'
+          lede='Software engineer from Cochabamba, Bolivia — building web, mobile and data products since 2014.'
+        />
+      </Reveal>
 
-      <div className='w-full lg:w-2/3 flex flex-col gap-8'>
-        <div className='grid grid-cols-1 lg:grid-cols-2 gap-5'>
-          <div className='flex flex-col gap-4'>
-            <p>
-              My journey in software development started with a curiosity about
-              how things work behind the scenes. Today, I specialize in creating
-              end-to-end solutions that are both technically robust and
-              user-friendly.
+      <div className='grid grid-cols-1 lg:grid-cols-2 gap-10'>
+        <Reveal from='left' className='flex flex-col gap-4'>
+          {profile.summary.map((paragraph) => (
+            <p key={paragraph.slice(0, 24)} className='leading-relaxed'>
+              {paragraph}
             </p>
-            <p>
-              I believe in writing clean, maintainable code and staying up-to-date
-              with the latest technologies. When I&apos;m not coding, you&apos;ll find me
-              contributing to open source projects or mentoring aspiring developers.
-            </p>
-            <div>
-              What I bring to the table:
-              <ul className='pl-7 list-disc text-[#9E9E9E]'>
-                <li>5+ years of full stack development experience</li>
-                <li>Strong problem-solving and analytical skills</li>
-                <li>Experience leading development teams</li>
-                <li>Passion for continuous learning and improvement</li>
-              </ul>
-            </div>
+          ))}
+          <div>
+            <p className='text-accent text-sm tracking-widest mb-2'>{'// highlights'}</p>
+            <ul className='pl-7 list-disc text-muted flex flex-col gap-1'>
+              {profile.highlights.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
           </div>
+        </Reveal>
 
-          <div className='grid grid-cols-1 sm:grid-cols-2 gap-5'>
-            {skills.map((skill) => (
-              <div key={skill.title} className='border rounded-2xl p-6'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 gap-5'>
+          {focusAreas.map((area, idx) => (
+            <Reveal key={area.title} from='right' delay={idx * 100}>
+              <div className='h-full border border-line bg-panel rounded-2xl p-6 transition-colors duration-300 hover:border-accent/60'>
                 <div className='flex flex-col items-center gap-2'>
-                  {skill.icon}
-                  <p className='text-center font-medium'>{skill.title}</p>
-                  <p className='text-center text-xs text-[#9E9E9E]'>{skill.description}</p>
+                  <span className='text-accent'>{area.icon}</span>
+                  <p className='text-center font-medium'>{area.title}</p>
+                  <p className='text-center text-xs text-muted'>{area.description}</p>
                 </div>
               </div>
-            ))}
-          </div>
+            </Reveal>
+          ))}
         </div>
-
-        
       </div>
     </section>
   );
