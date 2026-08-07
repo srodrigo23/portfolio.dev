@@ -40,10 +40,16 @@ export const MainContent = () => {
   ];
 
   return (
-    <section id='home' className='flex min-h-[calc(100vh-3.75rem)] items-center'>
+    <section
+      id='home'
+      className='flex min-h-[calc(100vh-3.75rem)] items-center'
+    >
       <div className='w-full flex flex-col justify-center items-center gap-5 px-4 py-16'>
         <Reveal from='none' once>
-          <div className='relative rounded-full w-44 md:w-56 overflow-hidden ring-2 ring-line'>
+          <div
+            // className='relative rounded-full w-44 md:w-56 overflow-hidden ring-2 ring-line'
+            className='rounded-full w-44 md:w-56 overflow-hidden'
+          >
             <Image
               className='rounded-full object-cover'
               src='/img/photo_react_developer.webp'
@@ -52,7 +58,7 @@ export const MainContent = () => {
               alt='Portrait of Sergio Rodrigo Cárdenas Rivera'
               priority
             />
-            <div className='absolute inset-x-0 bottom-0 h-1/3 bg-linear-to-t from-black/90 to-transparent' />
+            {/* <div className='absolute inset-x-0 bottom-0 h-1/3 bg-linear-to-t from-black/90 to-transparent' /> */}
           </div>
         </Reveal>
 

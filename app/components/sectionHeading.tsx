@@ -10,7 +10,7 @@ type SectionHeadingProps = {
 export default function SectionHeading({ slug, title, lede }: SectionHeadingProps) {
   return (
     <div className='mb-10'>
-      <p className='text-accent text-sm tracking-widest'>{`// ${slug}`}</p>
+      <p className='text-accent text-md'>{`// ${slug}`}</p>
       <h2 className={`${displayFont.className} text-3xl md:text-4xl font-bold mt-2`}>
         {title}
       </h2>

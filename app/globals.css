@@ -87,3 +87,22 @@ body {
   background: var(--accent-solid);
   color: var(--accent-fg);
 }
+
+/*
+ * Brand logo tint (skill pills). The two values come from techIcon.tsx as
+ * inline custom properties; picking between them here — rather than reading
+ * the theme in JS — keeps those components on the server and free of FOUC.
+ */
+.tech-icon {
+  color: var(--tech-color);
+}
+
+:root[data-theme="dark"] .tech-icon {
+  color: var(--tech-color-dark, var(--tech-color));
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .tech-icon {
+    color: var(--tech-color-dark, var(--tech-color));
+  }
+}

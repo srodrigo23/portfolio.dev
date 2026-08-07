@@ -117,7 +117,7 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     title: "Salesforce",
-    items: ["Lightning Web Components", "Aura", "Apex", "SOQL", "SOSL"],
+    items: ["LWC", "Aura", "Apex", "SOQL", "SOSL"],
   },
 ];
 
@@ -208,7 +208,7 @@ export const education: Degree[] = [
     location: "Remote",
   },
   {
-    title: "Postgraduate in University Education Based on Competencies",
+    title: "Postgraduate Diploma in Higher Education Teaching",
     detail: "Teaching credential",
     period: "2021",
     school: "San Simón University",
@@ -230,12 +230,18 @@ export const education: Degree[] = [
   },
 ];
 
-export type Certification = { title: string; issuer: string; year: string };
+/** `link` is optional — fill it in and the entry renders as an anchor. */
+export type Certification = {
+  title: string;
+  issuer: string;
+  year: string;
+  link?: string;
+};
 
 export const certifications: Certification[] = [
   { title: "React Front-End Developer (Role)", issuer: "HackerRank", year: "2026" },
   { title: "React (Basic)", issuer: "HackerRank", year: "2026" },
-  { title: "Power BI — Basic & Intermediate", issuer: "San Simón University", year: "2023" },
+  // { title: "Power BI — Basic & Intermediate", issuer: "San Simón University", year: "2023" },
   { title: "Crash Course in Python", issuer: "Coursera", year: "2023" },
   { title: "Trailhead Ranger Level", issuer: "Salesforce Trailhead", year: "2022" },
   { title: "Salesforce Developer 1", issuer: "Salesforce Trailhead", year: "2022" },
