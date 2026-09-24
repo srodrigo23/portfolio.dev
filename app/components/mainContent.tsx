@@ -84,7 +84,7 @@ export const MainContent = () => {
         <div
           className={`flex flex-col items-center gap-5 transition-all duration-700 ${
             doneTyping ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-          } motion-reduce:transition-none motion-reduce:opacity-100`}
+          } 1-reduce:transition-none motion-reduce:opacity-100`}
         >
           <p className='text-accent text-sm md:text-base tracking-widest'>
             {`> ${profile.role}`}

@@ -15,7 +15,8 @@ export default function SectionHeading({ slug, title, lede }: SectionHeadingProp
         {title}
       </h2>
       {lede && <p className='text-muted mt-3 max-w-2xl'>{lede}</p>}
-      <div className='mt-4 h-px w-16 bg-accent' />
+      {/* the rule is where the two accents meet — primary into secondary */}
+      <div className='mt-4 h-px w-16 bg-linear-to-r from-accent to-accent-2' />
     </div>
   );
 }

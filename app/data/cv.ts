@@ -129,6 +129,9 @@ export type Project = {
   bullets: string[];
   stack: string[];
   link?: string;
+  /** Full-bleed card art, e.g. "/img/projects/media-box.webp". Optional —
+   *  cards fall back to a plain accent wash while a project has no image. */
+  image?: string;
 };
 
 export const projects: Project[] = [
@@ -136,13 +139,11 @@ export const projects: Project[] = [
     title: "Video Surveillance Smart System",
     kind: "Computer Vision · AI",
     year: "2021",
-    description:
-      "AI-powered home surveillance system for real-time fire, smoke and human detection.",
+    description: "Home surveillance that spots fire, smoke and people live.",
     bullets: [
-      "Client-server architecture for distributed video processing",
-      "Real-time frame capture with server-side image-processing pipeline",
-      "Pre-trained neural network for human silhouette detection",
-      "Automated alerts via SMTP and the WhatsApp API",
+      "Distributed client-server video processing",
+      "Neural network for human detection",
+      "Alerts over SMTP and WhatsApp",
     ],
     stack: ["Python", "OpenCV", "Neural Networks", "HTTP streaming"],
     link: "https://github.com/srodrigo23",
@@ -151,13 +152,11 @@ export const projects: Project[] = [
     title: "Media Box Player",
     kind: "Android · Mobile",
     year: "2018",
-    description:
-      "Native Android application for cloud-based multimedia streaming.",
+    description: "Native Android app for cloud multimedia streaming.",
     bullets: [
-      "Model-View-Presenter architecture for maintainability",
-      "Dropbox API integration with secure OAuth authentication",
-      "Adaptive video streaming with ExoPlayer",
-      "Background threads and async data loading for performance",
+      "Model-View-Presenter architecture",
+      "Dropbox API over OAuth",
+      "Adaptive streaming with ExoPlayer",
     ],
     stack: ["Java", "Android SDK", "ExoPlayer", "Dropbox API"],
     link: "https://github.com/srodrigo23",
@@ -166,12 +165,11 @@ export const projects: Project[] = [
     title: "WhatsApp NLP Chatbots",
     kind: "NLP · Conversational AI",
     year: "2022 — 2024",
-    description:
-      "Production chatbots for WhatsApp built at Oktana with natural language processing.",
+    description: "Production WhatsApp chatbots built at Oktana.",
     bullets: [
-      "Conversational flows built on the Rasa framework",
-      "Meta API integration for WhatsApp messaging",
-      "Python back-end services with Flask and FastAPI",
+      "Conversational flows on Rasa",
+      "Meta API for messaging",
+      "Python services with Flask and FastAPI",
     ],
     stack: ["Rasa", "Python", "Meta API", "NLP"],
   },
@@ -179,12 +177,11 @@ export const projects: Project[] = [
     title: "srodrigo23.dev",
     kind: "Web · Portfolio",
     year: "2026",
-    description:
-      "This site — a fast, single-page portfolio built with the App Router.",
+    description: "This site — a single-page portfolio on the App Router.",
     bullets: [
       "Next.js 16 with React Server Components",
-      "Tailwind CSS v4 theme tokens, single dark theme",
-      "Scroll-linked reveal animations with IntersectionObserver",
+      "Light and dark themes from Tailwind v4 tokens",
+      "Scroll-linked reveals via IntersectionObserver",
     ],
     stack: ["Next.js", "TypeScript", "Tailwind CSS"],
     link: "https://github.com/srodrigo23/portfolio",

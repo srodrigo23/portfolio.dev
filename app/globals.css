@@ -8,43 +8,49 @@
 :root,
 :root[data-theme="light"] {
   color-scheme: light;
-  --background: #faf9f6;
-  --foreground: #1c1b18;
-  --muted: #6e6a60;
-  --accent: #b45309; /* amber-700 — readable on light bg */
-  --accent-solid: #f59e0b; /* button fills */
-  --accent-fg: #1c1102; /* text on accent-solid */
+  --background: #f6f8fc;
+  --foreground: #172033;
+  --muted: #64748b;
+  /* Pastel blue is by nature too pale to read as text on a near-white page,
+     so light mode uses a deepened version of the same hue and saves the true
+     pastel for fills, where dark text sits on top of it. */
+  --accent: #3f6cad;
+  --accent-solid: #7fa9e8; /* button fills */
+  --accent-fg: #0e1c30; /* text on accent-solid */
+  --accent-2: #7a6bc4; /* soft violet — secondary accent */
   --panel: #ffffff;
-  --line: rgba(20, 15, 0, 0.12);
-  --dot: rgba(20, 15, 0, 0.06);
+  --line: rgba(23, 42, 82, 0.12);
+  --dot: rgba(23, 42, 82, 0.06);
 }
 
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --background: #0b0b0c;
-  --foreground: #e8e6e1;
-  --muted: #97948c;
-  --accent: #fcd34d; /* amber-300, brand color */
-  --accent-solid: #fcd34d;
-  --accent-fg: #0b0b0c;
-  --panel: #131315;
-  --line: rgba(255, 255, 255, 0.09);
-  --dot: rgba(255, 255, 255, 0.045);
+  --background: #0b0e14;
+  --foreground: #e5eaf2;
+  --muted: #8b96a8;
+  --accent: #9ec5ff; /* pastel blue, brand color */
+  --accent-solid: #9ec5ff;
+  --accent-fg: #0b0e14;
+  --accent-2: #c3b5f5; /* pastel lilac */
+  --panel: #12161f;
+  --line: rgba(158, 197, 255, 0.14);
+  --dot: rgba(158, 197, 255, 0.06);
 }
 
 /* No-JS fallback: follow the system when the script hasn't set a theme. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     color-scheme: dark;
-    --background: #0b0b0c;
-    --foreground: #e8e6e1;
-    --muted: #97948c;
-    --accent: #fcd34d;
-    --accent-solid: #fcd34d;
-    --accent-fg: #0b0b0c;
-    --panel: #131315;
-    --line: rgba(255, 255, 255, 0.09);
-    --dot: rgba(255, 255, 255, 0.045);
+    --background: #0b0e14;
+    --foreground: #e5eaf2;
+    --muted: #8b96a8;
+    --accent: #9ec5ff;
+    --accent-solid: #9ec5ff;
+    --accent-fg: #0b0e14;
+    --accent-2: #c3b5f5;
+    --panel: #12161f;
+    --line: rgba(158, 197, 255, 0.14);
+    --dot: rgba(158, 197, 255, 0.06);
   }
 }
 
@@ -55,6 +61,7 @@
   --color-accent: var(--accent);
   --color-accent-solid: var(--accent-solid);
   --color-accent-fg: var(--accent-fg);
+  --color-accent-2: var(--accent-2);
   --color-panel: var(--panel);
   --color-line: var(--line);
   --font-sans: var(--font-geist-sans);
@@ -86,6 +93,15 @@ body {
 ::selection {
   background: var(--accent-solid);
   color: var(--accent-fg);
+}
+
+/* Carousel track: the dots and arrows are the affordance, not a scrollbar. */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
 /*
