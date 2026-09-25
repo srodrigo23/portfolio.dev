@@ -10,7 +10,7 @@ const navSections = [
   { tag: 'Experience', key: 'experience' },
   { tag: 'Skills', key: 'skills' },
   { tag: 'Projects', key: 'projects' },
-  { tag: 'Education', key: 'education' },
+  // { tag: 'Education', key: 'education' },
   { tag: 'Contact', key: 'contact' },
 ];
 
