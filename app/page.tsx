@@ -14,7 +14,7 @@ export default function Home() {
     <>
       {/* <ReportView/> */}
       <MyNavbar />
-      <div className='container mx-auto  px-5 lg:px-50 md:px-25'>
+      <main className='container mx-auto  px-5 lg:px-50 md:px-25'>
         <MainContent />
         <About />
         <Experience />
@@ -22,7 +22,7 @@ export default function Home() {
         <Projects />
         <Education />
         <Contact />
-      </div>
+      </main>
       <Footer />
     </>
   );
