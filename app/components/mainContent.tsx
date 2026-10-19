@@ -52,7 +52,7 @@ export const MainContent = () => {
           >
             <Image
               className='rounded-full object-cover'
-              src='/img/photo_react_developer.webp'
+              src='/img/photo_portrait.webp'
               width={500}
               height={500}
               alt='Portrait of Sergio Rodrigo Cárdenas Rivera'
@@ -96,6 +96,11 @@ export const MainContent = () => {
 
           <p className='flex items-center gap-1.5 text-sm text-muted'>
             <LuMapPin aria-hidden='true' /> {profile.location}
+          </p>
+
+          <p className='flex items-center gap-2 text-sm'>
+            <span aria-hidden='true' className='size-2 rounded-full bg-accent' />
+            {profile.availability}
           </p>
 
           <div className='flex flex-wrap justify-center gap-3'>

@@ -1,4 +1,4 @@
-import { LuMail, LuPhone, LuMapPin, LuGithub, LuLinkedin } from 'react-icons/lu';
+import { LuMail, LuGithub, LuLinkedin } from 'react-icons/lu';
 import { profile } from '../data/cv';
 import Reveal from './reveal';
 import SectionHeading from './sectionHeading';
@@ -11,28 +11,17 @@ const contactItems = [
     href: `mailto:${profile.email}`,
   },
   {
-    icon: <LuPhone size={22} />,
-    label: 'Phone',
-    value: profile.phone,
-    href: `tel:${profile.phone.replace(/\s/g, '')}`,
+    icon: <LuLinkedin size={22} />,
+    label: 'LinkedIn',
+    value: 'linkedin.com/in/srodrigo23',
+    href: profile.linkedin,
   },
-  // {
-  //   icon: <LuMapPin size={22} />,
-  //   label: 'Location',
-  //   value: profile.location,
-  // },
-  // {
-  //   icon: <LuGithub size={22} />,
-  //   label: 'GitHub',
-  //   value: 'github.com/srodrigo23',
-  //   href: profile.github,
-  // },
-  // {
-  //   icon: <LuLinkedin size={22} />,
-  //   label: 'LinkedIn',
-  //   value: 'linkedin.com/in/srodrigo23',
-  //   href: profile.linkedin,
-  // },
+  {
+    icon: <LuGithub size={22} />,
+    label: 'GitHub',
+    value: 'github.com/srodrigo23',
+    href: profile.github,
+  },
 ];
 
 const Contact = () => {
@@ -43,7 +32,7 @@ const Contact = () => {
           <SectionHeading
             slug='contact'
             title='Get In Touch'
-            lede="Open to interesting projects, teams and collaborations. The fastest way to reach me is email — I usually reply within a day."
+            lede="Open to interesting projects, teams and collaborations. The fastest way to reach me is email — Available for freelance work and remote roles."
           />
           <div className='flex flex-col gap-4 '>
           {contactItems.map((item, idx) => {
@@ -77,14 +66,6 @@ const Contact = () => {
               </Reveal>
             );
           })}
-          {/* <Reveal delay={contactItems.length * 80}>
-            <a
-              href={`mailto:${profile.email}?subject=Hello%20Sergio`}
-              className='flex h-full items-center justify-center gap-2 rounded-2xl bg-accent-solid text-accent-fg font-bold p-5 transition-all duration-300 hover:scale-[1.02] active:scale-95'
-            >
-              <LuMail aria-hidden='true' /> Say hello
-            </a>
-          </Reveal> */}
                 </div>
         </div>
       </Reveal>

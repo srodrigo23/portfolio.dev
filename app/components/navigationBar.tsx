@@ -20,8 +20,9 @@ export default function MyNavbar() {
 
   // Scrollspy: highlight the nav item whose section is currently on screen.
   useEffect(() => {
-    const sections = navSections
-      .map((s) => document.getElementById(s.key))
+    // 'home' is observed but has no nav item, so the highlight clears at the top
+    const sections = ['home', ...navSections.map((s) => s.key)]
+      .map((id) => document.getElementById(id))
       .filter((el): el is HTMLElement => el !== null);
 
     const observer = new IntersectionObserver(
