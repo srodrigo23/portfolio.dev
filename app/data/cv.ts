@@ -268,3 +268,71 @@ export const teaching = {
   summary:
     "Professor and teaching assistant at San Simón University since 2014 — Computación 1, Sistemas de Información 2, and VBA/Excel instruction. Mentor at the Tech4Future Hackathon 2026 and the Google 'Build with AI' Hackathon 2025.",
 };
+
+/**
+ * Hero diagram: five layers of a typical system, each tied to where the work
+ * actually happened (all drawn from cv.md).
+ */
+export type SystemNode = {
+  id: "web" | "mobile" | "api" | "data" | "cloud";
+  label: string;
+  hint: string;
+  where: string[];
+  stack: string[];
+};
+
+export const systemMap: SystemNode[] = [
+  {
+    id: "web",
+    label: "Web",
+    hint: "Next.js · React",
+    where: [
+      "Freelance: full-stack web apps for local institutions",
+      "SHEMA YISRAEL: web educational platforms for medical studies",
+      "Oktana: web apps with React, Next.js and Flask",
+    ],
+    stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Redux", "Zustand"],
+  },
+  {
+    id: "mobile",
+    label: "Mobile",
+    hint: "React Native · Android",
+    where: [
+      "SHEMA YISRAEL: React Native apps released to production",
+      "Media Box Player: native Android streaming app (capstone)",
+    ],
+    stack: ["React Native", "Android (Java / Kotlin)"],
+  },
+  {
+    id: "api",
+    label: "API",
+    hint: "Nest.js · FastAPI",
+    where: [
+      "SHEMA YISRAEL: Nest.js back end for web and mobile",
+      "Freelance: FastAPI services in Docker",
+      "Oktana: Python services with Flask, SQLAlchemy and Rasa",
+    ],
+    stack: ["Nest.js", "FastAPI", "Flask", "SQLAlchemy", "Prisma", "Express"],
+  },
+  {
+    id: "data",
+    label: "Data",
+    hint: "Python · SQL",
+    where: [
+      "Alicorp: ETL from SQL Server and customer clustering for discount policies",
+      "Master's in Data Science and Intelligent Technologies (in progress)",
+    ],
+    stack: ["Python", "scikit-learn", "Pandas", "matplotlib", "PostgreSQL", "SQL Server", "Power BI"],
+  },
+  {
+    id: "cloud",
+    label: "Cloud",
+    hint: "AWS · Docker",
+    where: [
+      "SHEMA YISRAEL: production releases on AWS (Amplify, S3, RDS)",
+      "Oktana: deployments on Heroku and AWS S3",
+      "Freelance: Docker-containerized deployments",
+    ],
+    stack: ["AWS", "Amplify", "S3", "RDS", "Lambda", "Docker", "Heroku"],
+  },
+];
