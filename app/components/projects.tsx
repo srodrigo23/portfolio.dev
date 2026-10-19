@@ -21,14 +21,14 @@ const Projects = () => {
           horizontal scroll, since off-screen slides never enter the viewport. */}
       <Reveal>
         <Carousel label='Projects' count={projects.length}>
-          {projects.map((project, idx) => (
+          {projects.map((project) => (
             <div
               key={project.title}
               /* 85% on phones leaves the next card peeking, which is what
                  tells people the row scrolls */
               className='w-[85%] shrink-0 snap-start sm:w-[70%] md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]'
             >
-              <article className='group relative flex h-full min-h-80 flex-col overflow-hidden rounded-2xl border border-line bg-panel transition-colors duration-300 hover:border-accent/60'>
+              <article className='group relative flex h-full min-h-80 flex-col overflow-hidden rounded-lg border border-line bg-panel transition-colors duration-300 hover:border-accent/60'>
                 {/*
                   Full-bleed art, dimmed so it reads as texture rather than a
                   photo. It sits under the content instead of taking its own
@@ -60,12 +60,6 @@ const Projects = () => {
                   <div className='flex items-baseline justify-between gap-3'>
                     <p className='text-xs text-muted'>
                       {project.kind} · {project.year}
-                    </p>
-                    <p
-                      aria-hidden='true'
-                      className='text-4xl font-bold leading-none text-foreground/5 transition-colors duration-300 group-hover:text-accent/15'
-                    >
-                      {String(idx + 1).padStart(2, '0')}
                     </p>
                   </div>
 

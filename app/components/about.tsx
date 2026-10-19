@@ -60,7 +60,7 @@ const About = () => {
         <div className='grid grid-cols-1 sm:grid-cols-2 gap-5'>
           {focusAreas.map((area, idx) => (
             <Reveal key={area.title} from='right' delay={idx * 100}>
-              <div className='h-full border border-line bg-panel rounded-2xl p-6 transition-colors duration-300 hover:border-accent/60'>
+              <div className='h-full border border-line bg-panel rounded-lg p-6 transition-colors duration-300 hover:border-accent/60'>
                 <div className='flex flex-col items-center gap-2'>
                   <span className='text-accent'>{area.icon}</span>
                   <p className='text-center font-medium'>{area.title}</p>

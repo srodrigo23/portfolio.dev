@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import { LuMenu, LuX } from 'react-icons/lu';
-import { displayFont } from "../font";
 import ThemeToggle from './themeToggle';
 
 const navSections = [
@@ -48,13 +47,13 @@ export default function MyNavbar() {
       <div className='container mx-auto flex justify-between items-center px-4'>
         <a
           href='#home'
-          className={`${displayFont.className} font-bold md:text-2xl cursor-pointer text-accent`}
+          className={`font-display font-stretch-expanded font-bold md:text-2xl cursor-pointer text-accent`}
         >
           srodrigo23.dev
         </a>
 
         <div className='hidden md:flex items-center gap-4'>
-          <nav className={displayFont.className} aria-label='Main'>
+          <nav className='font-display font-stretch-expanded' aria-label='Main'>
             <ul className='flex gap-7'>
               {navSections.map((el) => (
                 <li key={el.key}>
@@ -103,7 +102,7 @@ export default function MyNavbar() {
               <LuX size={28} />
             </button>
           </div>
-          <nav className={`${displayFont.className} px-6`} aria-label='Mobile'>
+          <nav className={`font-display font-stretch-expanded px-6`} aria-label='Mobile'>
             <ul className='flex flex-col gap-6'>
               {navSections.map((el) => (
                 <li key={el.key} className='border-b border-line pb-2'>

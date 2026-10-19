@@ -54,12 +54,12 @@ const Contact = () => {
                     href={item.href}
                     target={item.href.startsWith('http') ? '_blank' : undefined}
                     rel='noopener noreferrer'
-                    className='block h-full border border-line bg-panel rounded-2xl p-5 transition-all duration-300 hover:border-accent/60 hover:-translate-y-0.5'
+                    className='block h-full border border-line bg-panel rounded-lg p-5 transition-all duration-300 hover:border-accent/60 hover:-translate-y-0.5'
                   >
                     {content}
                   </a>
                 ) : (
-                  <div className='h-full border border-line bg-panel rounded-2xl p-5'>
+                  <div className='h-full border border-line bg-panel rounded-lg p-5'>
                     {content}
                   </div>
                 )}

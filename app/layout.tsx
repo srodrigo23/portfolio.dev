@@ -1,22 +1,7 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono, IBM_Plex_Mono } from "next/font/google";
+import { bodyFont, displayFont, monoFont } from "./font";
 
 import "./globals.css";
-
-const ibmPexMono = IBM_Plex_Mono({
-  weight: "400",
-  subsets: ["latin"],
-});
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://rodres.xyz'),
@@ -69,7 +54,7 @@ export default function RootLayout({
   return (
     <html lang='en' suppressHydrationWarning>
       <body
-        className={`${ibmPexMono.className} ${geistSans.variable} ${geistMono.variable}`}
+        className={`${displayFont.variable} ${bodyFont.variable} ${monoFont.variable} font-sans`}
       >
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         {children}

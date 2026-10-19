@@ -14,7 +14,7 @@ export default function Home() {
     <>
       {/* <ReportView/> */}
       <MyNavbar />
-      <main className='container mx-auto  px-5 lg:px-50 md:px-25'>
+      <main className='container mx-auto max-w-6xl px-5 md:px-10'>
         <MainContent />
         <About />
         <Experience />
