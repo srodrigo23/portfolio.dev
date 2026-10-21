@@ -2,25 +2,36 @@
 
 import { useEffect, useState } from 'react';
 import { LuMenu, LuX } from 'react-icons/lu';
+import type { Content } from '../i18n/content';
+import { localePath } from '../i18n/config';
 import ThemeToggle from './themeToggle';
 
-const navSections = [
-  { tag: 'About', key: 'about' },
-  { tag: 'Experience', key: 'experience' },
-  { tag: 'Skills', key: 'skills' },
-  { tag: 'Projects', key: 'projects' },
-  // { tag: 'Education', key: 'education' },
-  { tag: 'Contact', key: 'contact' },
-];
+// Section ids stay English in both locales; only the labels change.
+const navKeys = ['about', 'experience', 'skills', 'projects', 'contact'] as const;
 
-export default function MyNavbar() {
+export default function MyNavbar({ t }: { t: Content }) {
+  const { nav } = t.ui;
+  const navSections = navKeys.map((key) => ({ key, tag: nav[key] }));
+  const otherLang = t.lang === 'en' ? 'es' : 'en';
+  const langLink = (
+    <a
+      href={localePath(otherLang)}
+      hrefLang={otherLang}
+      lang={otherLang}
+      aria-label={`${nav.langCode} — ${nav.langLabel}`}
+      className='rounded-md border border-line px-2 py-1 font-mono text-xs font-medium text-muted transition-colors duration-200 hover:border-accent hover:text-accent'
+    >
+      {nav.langCode}
+    </a>
+  );
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
 
   // Scrollspy: highlight the nav item whose section is currently on screen.
   useEffect(() => {
     // 'home' is observed but has no nav item, so the highlight clears at the top
-    const sections = ['home', ...navSections.map((s) => s.key)]
+    const sections = ['home', ...navKeys]
       .map((id) => document.getElementById(id))
       .filter((el): el is HTMLElement => el !== null);
 
@@ -53,7 +64,7 @@ export default function MyNavbar() {
         </a>
 
         <div className='hidden md:flex items-center gap-4'>
-          <nav className='font-display font-stretch-expanded' aria-label='Main'>
+          <nav className='font-display font-stretch-expanded' aria-label={nav.main}>
             <ul className='flex gap-7'>
               {navSections.map((el) => (
                 <li key={el.key}>
@@ -64,15 +75,17 @@ export default function MyNavbar() {
               ))}
             </ul>
           </nav>
-          <ThemeToggle />
+          {langLink}
+          <ThemeToggle t={t} />
         </div>
 
         <div className='md:hidden flex items-center gap-1'>
-          <ThemeToggle />
+          {langLink}
+          <ThemeToggle t={t} />
           <button
             className='p-2 cursor-pointer hover:text-accent transition-colors'
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label='Toggle menu'
+            aria-label={nav.openMenu}
             aria-expanded={isMenuOpen}
           >
             {isMenuOpen ? <LuX size={28} /> : <LuMenu size={28} />}
@@ -97,12 +110,12 @@ export default function MyNavbar() {
             <button
               className='p-2 cursor-pointer hover:text-accent transition-colors'
               onClick={() => setIsMenuOpen(false)}
-              aria-label='Close menu'
+              aria-label={nav.closeMenu}
             >
               <LuX size={28} />
             </button>
           </div>
-          <nav className={`font-display font-stretch-expanded px-6`} aria-label='Mobile'>
+          <nav className={`font-display font-stretch-expanded px-6`} aria-label={nav.mobile}>
             <ul className='flex flex-col gap-6'>
               {navSections.map((el) => (
                 <li key={el.key} className='border-b border-line pb-2'>

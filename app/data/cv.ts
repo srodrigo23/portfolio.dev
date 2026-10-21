@@ -215,31 +215,31 @@ export type Degree = {
 
 export const education: Degree[] = [
   {
-    title: "Master in Data Science & Smart Technologies",
+    title: "Master's Degree in Data Science and Intelligent Technologies",
     detail: "In progress",
-    period: "Current",
-    school: "Oruro's Technical University",
+    period: "In progress",
+    school: "Universidad Técnica de Oruro",
     location: "Remote",
   },
   {
-    title: "Postgraduate Diploma in Higher Education Teaching",
-    detail: "Teaching credential",
-    period: "2021",
-    school: "San Simón University",
+    title: "Postgraduate Diploma in Competency-Based Higher Education",
+    detail: "Postgraduate diploma",
+    period: "Sep 2021",
+    school: "Universidad Mayor de San Simón (UMSS)",
     location: "Cochabamba, BO",
   },
   {
     title: "Informatics Engineering",
     detail: "Bachelor's degree",
     period: "2018 — 2021",
-    school: "San Simón University",
+    school: "Universidad Mayor de San Simón (UMSS)",
     location: "Cochabamba, BO",
   },
   {
     title: "Systems Engineering",
     detail: "Bachelor's degree",
-    period: "2011 — 2018",
-    school: "San Simón University",
+    period: "2011 — 2017",
+    school: "Universidad Mayor de San Simón (UMSS)",
     location: "Cochabamba, BO",
   },
 ];

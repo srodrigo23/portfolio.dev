@@ -1,26 +1,32 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { LuArrowUpRight } from 'react-icons/lu';
-import { projects } from '../data/cv';
+import type { Content } from '../i18n/content';
 import Carousel from './carousel';
 import Reveal from './reveal';
 import SectionHeading from './sectionHeading';
 
-const Projects = () => {
+const Projects = ({ t }: { t: Content }) => {
+  const { projects, ui } = t;
+
   return (
     <section id='projects' className='px-4 py-20'>
       <Reveal>
         <SectionHeading
-          slug='projects'
-          title='Projects'
-          lede='Selected personal and professional work — from native Android to computer vision to this site.'
+          slug={ui.projects.slug}
+          title={ui.projects.title}
+          lede={ui.projects.lede}
         />
       </Reveal>
 
       {/* One Reveal around the whole track: a per-card fade would fight the
           horizontal scroll, since off-screen slides never enter the viewport. */}
       <Reveal>
-        <Carousel label='Projects' count={projects.length}>
+        <Carousel
+          label={ui.projects.title}
+          count={projects.length}
+          labels={ui.carousel}
+        >
           {projects.map((project) => (
             <div
               key={project.title}
@@ -106,7 +112,7 @@ const Projects = () => {
                         aria-hidden='true'
                         className='inline-flex shrink-0 items-center gap-1 text-sm text-accent'
                       >
-                        view
+                        {ui.projects.view}
                         <LuArrowUpRight className='transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5' />
                       </span>
                     )}

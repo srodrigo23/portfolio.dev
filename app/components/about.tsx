@@ -2,41 +2,29 @@ import { IoCodeSharp } from 'react-icons/io5';
 import { FiDatabase } from 'react-icons/fi';
 import { MdCloudQueue } from 'react-icons/md';
 import { GoPeople } from 'react-icons/go';
-import { profile } from '../data/cv';
+import type { Content } from '../i18n/content';
 import Reveal from './reveal';
 import SectionHeading from './sectionHeading';
 
-const focusAreas = [
-  {
-    icon: <IoCodeSharp size={36} />,
-    title: 'Full-Stack Development',
-    description: 'React, Next.js, NestJS, Flask and FastAPI — from UI to API',
-  },
-  {
-    icon: <FiDatabase size={36} />,
-    title: 'Data & Machine Learning',
-    description: 'Data engineering, scikit-learn and applied ML on real business data',
-  },
-  {
-    icon: <MdCloudQueue size={36} />,
-    title: 'Cloud & DevOps',
-    description: 'AWS (S3, Amplify, RDS, Lambda), Docker and Git workflows',
-  },
-  {
-    icon: <GoPeople size={36} />,
-    title: 'Leadership & Teaching',
-    description: 'Tech lead, university professor and hackathon mentor',
-  },
+// Icons stay in code; the text for each card comes from ui.about.focus (same order).
+const focusIcons = [
+  <IoCodeSharp key='code' size={36} />,
+  <FiDatabase key='data' size={36} />,
+  <MdCloudQueue key='cloud' size={36} />,
+  <GoPeople key='people' size={36} />,
 ];
 
-const About = () => {
+const About = ({ t }: { t: Content }) => {
+  const { profile, ui } = t;
+  const focusAreas = ui.about.focus.map((f, i) => ({ ...f, icon: focusIcons[i] }));
+
   return (
     <section id='about' className='px-4 py-20'>
       <Reveal>
         <SectionHeading
-          slug='about'
-          title='About Me'
-          lede='Software engineer from Cochabamba, Bolivia — building web, mobile and data products since 2014.'
+          slug={ui.about.slug}
+          title={ui.about.title}
+          lede={ui.about.lede}
         />
       </Reveal>
 
@@ -48,7 +36,7 @@ const About = () => {
             </p>
           ))}
           <div>
-            <p className='text-accent text-sm tracking-widest mb-2'>{'// highlights'}</p>
+            <p className='text-accent text-sm tracking-widest mb-2'>{ui.about.highlights}</p>
             <ul className='pl-7 list-disc text-muted flex flex-col gap-1'>
               {profile.highlights.map((item) => (
                 <li key={item}>{item}</li>

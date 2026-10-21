@@ -1,18 +1,19 @@
 import Image from 'next/image';
 import { LuLinkedin, LuGithub, LuMail, LuDownload, LuMapPin } from 'react-icons/lu';
-import { profile } from '../data/cv';
+import type { Content } from '../i18n/content';
 import Reveal from './reveal';
 import SystemDiagram from './systemDiagram';
 
 const sizeLogoButtons = 24;
 
-const socialLinks = [
-  { icon: <LuGithub size={sizeLogoButtons} />, link: profile.github, label: 'GitHub profile' },
-  { icon: <LuLinkedin size={sizeLogoButtons} />, link: profile.linkedin, label: 'LinkedIn profile' },
-  { icon: <LuMail size={sizeLogoButtons} />, link: `mailto:${profile.email}`, label: `Email ${profile.email}` },
-];
+export const MainContent = ({ t }: { t: Content }) => {
+  const { profile, ui } = t;
+  const socialLinks = [
+    { icon: <LuGithub size={sizeLogoButtons} />, link: profile.github, label: ui.hero.github },
+    { icon: <LuLinkedin size={sizeLogoButtons} />, link: profile.linkedin, label: ui.hero.linkedin },
+    { icon: <LuMail size={sizeLogoButtons} />, link: `mailto:${profile.email}`, label: `${ui.hero.email} ${profile.email}` },
+  ];
 
-export const MainContent = () => {
   return (
     <section
       id='home'
@@ -26,7 +27,7 @@ export const MainContent = () => {
               src='/img/photo_portrait.webp'
               width={160}
               height={160}
-              alt='Portrait of Sergio Rodrigo Cárdenas Rivera'
+              alt={ui.hero.portraitAlt}
               priority
             />
             <p className='font-mono text-sm text-accent md:text-base'>
@@ -57,16 +58,16 @@ export const MainContent = () => {
         <div className='flex flex-wrap items-center gap-3'>
           <a
             className='flex cursor-pointer items-center gap-2 rounded-md bg-accent-solid px-5 py-3 font-bold text-accent-fg transition-all duration-200 ease-out hover:-translate-y-0.5 active:scale-95'
-            href={profile.cvFile}
-            download='sergio_cardenas_cv.pdf'
+            href={ui.cv.file}
+            download={ui.cv.downloadName}
           >
-            <LuDownload aria-hidden='true' /> Download CV
+            <LuDownload aria-hidden='true' /> {ui.hero.downloadCv}
           </a>
           <a
             className='flex cursor-pointer items-center rounded-md border border-line px-5 py-3 font-bold transition-all duration-200 ease-out hover:border-accent hover:text-accent active:scale-95'
             href='#contact'
           >
-            Get in touch
+            {ui.hero.getInTouch}
           </a>
           <div className='flex gap-1'>
             {socialLinks.map((el) => (
@@ -86,7 +87,7 @@ export const MainContent = () => {
       </div>
 
       <Reveal from='right' once>
-        <SystemDiagram />
+        <SystemDiagram nodes={t.systemMap} caption={ui.diagram.caption} />
       </Reveal>
     </section>
   );

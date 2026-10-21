@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react';
-import { systemMap, type SystemNode } from '../data/cv';
+import type { SystemNode } from '../data/cv';
 
 type NodeId = SystemNode['id'];
 
@@ -25,13 +25,19 @@ const edges: [NodeId, NodeId][] = [
  * The hero's thesis: the stack as a system. Select a layer to see the roles
  * and tools behind it. Hover and focus preview, click pins (touch-friendly).
  */
-export default function SystemDiagram() {
+export default function SystemDiagram({
+  nodes,
+  caption,
+}: {
+  nodes: SystemNode[];
+  caption: string;
+}) {
   const [active, setActive] = useState<NodeId>('web');
-  const current = systemMap.find((n) => n.id === active)!;
+  const current = nodes.find((n) => n.id === active)!;
 
   return (
     <div className='rounded-lg border border-line bg-panel p-4 sm:p-5'>
-      <p className='font-mono text-xs text-muted'>{'// what I build — select a layer'}</p>
+      <p className='font-mono text-xs text-muted'>{caption}</p>
 
       <div className='relative mx-auto mt-4 aspect-[4/3] w-full max-w-md'>
         <svg
@@ -60,7 +66,7 @@ export default function SystemDiagram() {
           })}
         </svg>
 
-        {systemMap.map((node) => {
+        {nodes.map((node) => {
           const on = node.id === active;
           return (
             <button

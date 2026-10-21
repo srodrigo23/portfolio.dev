@@ -2,6 +2,7 @@
 
 import { useSyncExternalStore } from 'react';
 import { LuSun, LuMoon } from 'react-icons/lu';
+import type { Content } from '../i18n/content';
 
 /**
  * The theme lives in data-theme on <html> (applied pre-paint by the inline
@@ -20,7 +21,7 @@ function subscribe(onChange: () => void) {
 const getSnapshot = () => document.documentElement.dataset.theme ?? null;
 const getServerSnapshot = () => null;
 
-export default function ThemeToggle() {
+export default function ThemeToggle({ t }: { t: Content }) {
   const theme = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   const toggle = () => {
@@ -32,7 +33,7 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggle}
-      aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+      aria-label={theme === 'dark' ? t.ui.theme.toLight : t.ui.theme.toDark}
       className='p-2 rounded-lg text-muted cursor-pointer border border-transparent
         transition-all duration-200 hover:text-accent hover:border-line active:scale-95'
     >

@@ -1,17 +1,19 @@
 // import Image from 'next/image';
-import { skillGroups } from '../data/cv';
+import type { Content } from '../i18n/content';
 import Reveal from './reveal';
 import SectionHeading from './sectionHeading';
 import TechIcon from './techIcon';
 
-export default function Skills() {
+export default function Skills({ t }: { t: Content }) {
+  const { skillGroups, ui } = t;
+
   return (
     <section id='skills' className='px-4 py-20'>
       <Reveal>
         <SectionHeading
-          slug='skills'
-          title='Skills & Technologies'
-          lede='A toolkit for building modern, scalable applications across the entire stack.'
+          slug={ui.skills.slug}
+          title={ui.skills.title}
+          lede={ui.skills.lede}
         />
       </Reveal>
 
