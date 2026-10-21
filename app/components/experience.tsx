@@ -1,15 +1,17 @@
-import { experience } from '../data/cv';
+import type { Content } from '../i18n/content';
 import Reveal from './reveal';
 import SectionHeading from './sectionHeading';
 
-const Experience = () => {
+const Experience = ({ t }: { t: Content }) => {
+  const { experience, ui } = t;
+
   return (
     <section id='experience' className='px-4 py-20'>
       <Reveal>
         <SectionHeading
-          slug='experience'
-          title='Working Experience'
-          lede='From Salesforce agency work to data engineering to leading an international product team.'
+          slug={ui.experience.slug}
+          title={ui.experience.title}
+          lede={ui.experience.lede}
         />
       </Reveal>
 

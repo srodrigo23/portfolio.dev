@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { LuGraduationCap, LuAward, LuArrowUpRight } from 'react-icons/lu';
-import { education, certifications, type Certification } from '../data/cv';
+import type { Certification } from '../data/cv';
+import type { Content } from '../i18n/content';
 import Reveal from './reveal';
 import SectionHeading from './sectionHeading';
 
@@ -49,14 +50,16 @@ function CertificateTitle({ cert }: { cert: Certification }) {
   );
 }
 
-const Education = () => {
+const Education = ({ t }: { t: Content }) => {
+  const { education, certifications, ui } = t;
+
   return (
     <section id='education' className='px-4 py-20'>
       <Reveal>
         <SectionHeading
-          slug='education'
-          title='Education & Certifications'
-          lede='Two engineering degrees, an ongoing master in data science, and a habit of collecting certificates.'
+          slug={ui.education.slug}
+          title={ui.education.title}
+          lede={ui.education.lede}
         />
       </Reveal>
 
@@ -64,7 +67,7 @@ const Education = () => {
         <div className='flex flex-1 flex-col gap-5'>
           <Reveal>
             <h3 className='flex items-center gap-2 text-accent text-sm'>
-              <LuGraduationCap aria-hidden='true' /> {'// degrees'}
+              <LuGraduationCap aria-hidden='true' /> {ui.education.degrees}
             </h3>
           </Reveal>
 
@@ -97,7 +100,7 @@ const Education = () => {
         <div className='flex flex-1 flex-col gap-5'>
           <Reveal>
             <h3 className='flex items-center gap-2 text-accent text-sm'>
-              <LuAward aria-hidden='true' /> {'// certifications'}
+              <LuAward aria-hidden='true' /> {ui.education.certifications}
             </h3>
           </Reveal>
 

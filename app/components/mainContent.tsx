@@ -1,121 +1,75 @@
-'use client'
-
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
 import { LuLinkedin, LuGithub, LuMail, LuDownload, LuMapPin } from 'react-icons/lu';
-import { profile } from '../data/cv';
+import type { Content } from '../i18n/content';
 import Reveal from './reveal';
+import SystemDiagram from './systemDiagram';
 
-const TYPE_DELAY = 90;
+const sizeLogoButtons = 24;
 
-export const MainContent = () => {
-  const sizeLogoButtons = 26;
-
-  // Typewriter: first name types out, then the rest of the hero fades in.
-  const [typedCount, setTypedCount] = useState(0);
-  const doneTyping = typedCount >= profile.firstName.length;
-
-  useEffect(() => {
-    if (doneTyping) return;
-    const id = setTimeout(() => setTypedCount((prev) => prev + 1), TYPE_DELAY);
-    return () => clearTimeout(id);
-  }, [typedCount, doneTyping]);
-
+export const MainContent = ({ t }: { t: Content }) => {
+  const { profile, ui } = t;
   const socialLinks = [
-    {
-      icon: <LuGithub size={sizeLogoButtons} />,
-      link: profile.github,
-      label: 'GitHub profile',
-    },
-    {
-      icon: <LuLinkedin size={sizeLogoButtons} />,
-      link: profile.linkedin,
-      label: 'LinkedIn profile',
-    },
-    {
-      icon: <LuMail size={sizeLogoButtons} />,
-      link: `mailto:${profile.email}`,
-      label: `Email ${profile.email}`,
-    },
+    { icon: <LuGithub size={sizeLogoButtons} />, link: profile.github, label: ui.hero.github },
+    { icon: <LuLinkedin size={sizeLogoButtons} />, link: profile.linkedin, label: ui.hero.linkedin },
+    { icon: <LuMail size={sizeLogoButtons} />, link: `mailto:${profile.email}`, label: `${ui.hero.email} ${profile.email}` },
   ];
 
   return (
     <section
       id='home'
-      className='flex min-h-[calc(100vh-3.75rem)] items-center'
+      className='grid min-h-[calc(100svh-3.75rem)] items-center gap-12 px-4 py-14 lg:grid-cols-[1.15fr_1fr] lg:gap-14'
     >
-      <div className='w-full flex flex-col justify-center items-center gap-5 px-4 py-16'>
+      <div className='flex flex-col items-start gap-6'>
         <Reveal from='none' once>
-          <div
-            // className='relative rounded-full w-44 md:w-56 overflow-hidden ring-2 ring-line'
-            className='rounded-full w-44 md:w-56 overflow-hidden'
-          >
+          <div className='flex items-center gap-4'>
             <Image
-              className='rounded-full object-cover'
-              src='/img/photo_react_developer.webp'
-              width={500}
-              height={500}
-              alt='Portrait of Sergio Rodrigo Cárdenas Rivera'
+              className='size-16 rounded-lg object-cover ring-1 ring-line md:size-20'
+              src='/img/photo_portrait.webp'
+              width={160}
+              height={160}
+              alt={ui.hero.portraitAlt}
               priority
             />
-            {/* <div className='absolute inset-x-0 bottom-0 h-1/3 bg-linear-to-t from-black/90 to-transparent' /> */}
+            <p className='font-mono text-sm text-accent md:text-base'>
+              {`// ${profile.role.toLowerCase()}`}
+            </p>
           </div>
         </Reveal>
 
-        <h1 className='text-center'>
-          <span className='block text-3xl md:text-5xl font-mono font-bold tracking-tight'>
-            {profile.firstName.slice(0, typedCount)}
-            <span
-              className={`text-accent ${doneTyping ? 'animate-pulse' : ''}`}
-              aria-hidden='true'
-            >
-              _
-            </span>
-          </span>
-          <span
-            className={`block text-lg md:text-2xl font-mono text-muted mt-1 transition-opacity duration-700 ${
-              doneTyping ? 'opacity-100' : 'opacity-0'
-            }`}
-          >
+        <h1 className='font-display font-stretch-expanded text-4xl font-bold leading-[1.05] tracking-tight md:text-5xl'>
+          {profile.firstName}
+          <span className='mt-2 block text-2xl font-medium text-muted md:text-3xl'>
             {profile.lastName}
           </span>
         </h1>
 
-        <div
-          className={`flex flex-col items-center gap-5 transition-all duration-700 ${
-            doneTyping ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-          } 1-reduce:transition-none motion-reduce:opacity-100`}
-        >
-          <p className='text-accent text-sm md:text-base tracking-widest'>
-            {`> ${profile.role}`}
-          </p>
+        <p className='max-w-xl text-lg text-foreground/90'>{profile.tagline}</p>
 
-          <p className='px-5 xl:w-1/2 md:w-2/3 text-muted text-center'>
-            {profile.tagline}
-          </p>
-
-          <p className='flex items-center gap-1.5 text-sm text-muted'>
+        <ul className='flex flex-col gap-1.5 font-mono text-sm text-muted'>
+          <li className='flex items-center gap-2'>
             <LuMapPin aria-hidden='true' /> {profile.location}
-          </p>
+          </li>
+          <li className='flex items-center gap-2 text-foreground'>
+            <span aria-hidden='true' className='ml-px size-2 bg-accent-2' />
+            {profile.availability}
+          </li>
+        </ul>
 
-          <div className='flex flex-wrap justify-center gap-3'>
-            <a
-              className='rounded-md bg-accent-solid text-accent-fg font-bold py-2 px-4 cursor-pointer flex items-center gap-2 transition-all duration-200 ease-out hover:scale-105 active:scale-95'
-              href={profile.cvFile}
-              download='sergio_cardenas_cv.pdf'
-            >
-              <LuDownload aria-hidden='true' /> Download CV
-            </a>
-
-            <a
-              className='rounded-md border border-line font-bold text-sm px-4 py-2 cursor-pointer flex items-center transition-all duration-200 ease-out hover:border-accent hover:text-accent active:scale-95'
-              href='#contact'
-            >
-              Get In Touch
-            </a>
-          </div>
-
-          <div className='pt-2 flex gap-3'>
+        <div className='flex flex-wrap items-center gap-3'>
+          <a
+            className='flex cursor-pointer items-center gap-2 rounded-md bg-accent-solid px-5 py-3 font-bold text-accent-fg transition-all duration-200 ease-out hover:-translate-y-0.5 active:scale-95'
+            href={ui.cv.file}
+            download={ui.cv.downloadName}
+          >
+            <LuDownload aria-hidden='true' /> {ui.hero.downloadCv}
+          </a>
+          <a
+            className='flex cursor-pointer items-center rounded-md border border-line px-5 py-3 font-bold transition-all duration-200 ease-out hover:border-accent hover:text-accent active:scale-95'
+            href='#contact'
+          >
+            {ui.hero.getInTouch}
+          </a>
+          <div className='flex gap-1'>
             {socialLinks.map((el) => (
               <a
                 key={el.label}
@@ -123,10 +77,7 @@ export const MainContent = () => {
                 target={el.link.startsWith('http') ? '_blank' : undefined}
                 rel='noopener noreferrer'
                 aria-label={el.label}
-                className='p-3 rounded-lg border border-transparent
-                  transition-all duration-200 ease-out text-muted
-                  hover:text-accent hover:border-line hover:-translate-y-0.5
-                  active:scale-95'
+                className='rounded-md border border-transparent p-3 text-muted transition-all duration-200 ease-out hover:border-line hover:text-accent active:scale-95'
               >
                 {el.icon}
               </a>
@@ -134,6 +85,10 @@ export const MainContent = () => {
           </div>
         </div>
       </div>
+
+      <Reveal from='right' once>
+        <SystemDiagram nodes={t.systemMap} caption={ui.diagram.caption} />
+      </Reveal>
     </section>
   );
 };

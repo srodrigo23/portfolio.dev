@@ -1,34 +1,40 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { LuArrowUpRight } from 'react-icons/lu';
-import { projects } from '../data/cv';
+import type { Content } from '../i18n/content';
 import Carousel from './carousel';
 import Reveal from './reveal';
 import SectionHeading from './sectionHeading';
 
-const Projects = () => {
+const Projects = ({ t }: { t: Content }) => {
+  const { projects, ui } = t;
+
   return (
     <section id='projects' className='px-4 py-20'>
       <Reveal>
         <SectionHeading
-          slug='projects'
-          title='Projects'
-          lede='Selected personal and professional work — from native Android to computer vision to this site.'
+          slug={ui.projects.slug}
+          title={ui.projects.title}
+          lede={ui.projects.lede}
         />
       </Reveal>
 
       {/* One Reveal around the whole track: a per-card fade would fight the
           horizontal scroll, since off-screen slides never enter the viewport. */}
       <Reveal>
-        <Carousel label='Projects' count={projects.length}>
-          {projects.map((project, idx) => (
+        <Carousel
+          label={ui.projects.title}
+          count={projects.length}
+          labels={ui.carousel}
+        >
+          {projects.map((project) => (
             <div
               key={project.title}
               /* 85% on phones leaves the next card peeking, which is what
                  tells people the row scrolls */
               className='w-[85%] shrink-0 snap-start sm:w-[70%] md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]'
             >
-              <article className='group relative flex h-full min-h-80 flex-col overflow-hidden rounded-2xl border border-line bg-panel transition-colors duration-300 hover:border-accent/60'>
+              <article className='group relative flex h-full min-h-80 flex-col overflow-hidden rounded-lg border border-line bg-panel transition-colors duration-300 hover:border-accent/60'>
                 {/*
                   Full-bleed art, dimmed so it reads as texture rather than a
                   photo. It sits under the content instead of taking its own
@@ -60,12 +66,6 @@ const Projects = () => {
                   <div className='flex items-baseline justify-between gap-3'>
                     <p className='text-xs text-muted'>
                       {project.kind} · {project.year}
-                    </p>
-                    <p
-                      aria-hidden='true'
-                      className='text-4xl font-bold leading-none text-foreground/5 transition-colors duration-300 group-hover:text-accent/15'
-                    >
-                      {String(idx + 1).padStart(2, '0')}
                     </p>
                   </div>
 
@@ -112,7 +112,7 @@ const Projects = () => {
                         aria-hidden='true'
                         className='inline-flex shrink-0 items-center gap-1 text-sm text-accent'
                       >
-                        view
+                        {ui.projects.view}
                         <LuArrowUpRight className='transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5' />
                       </span>
                     )}

@@ -10,6 +10,8 @@ type CarouselProps = {
   label: string;
   /** Slide count — needed to render the dots on the server pass. */
   count: number;
+  /** Translated control labels. */
+  labels: { prev: string; next: string; goTo: string };
 };
 
 /**
@@ -18,7 +20,7 @@ type CarouselProps = {
  * natively. The JS here only drives the arrows, the dots, and the
  * disabled/active state — remove it and the carousel still scrolls.
  */
-export default function Carousel({ children, label, count }: CarouselProps) {
+export default function Carousel({ children, label, count, labels }: CarouselProps) {
   const trackRef = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState(0);
   const [atStart, setAtStart] = useState(true);
@@ -94,7 +96,7 @@ export default function Carousel({ children, label, count }: CarouselProps) {
               key={i}
               type='button'
               onClick={() => scrollTo(i * step())}
-              aria-label={`Go to slide ${i + 1}`}
+              aria-label={`${labels.goTo} ${i + 1}`}
               aria-current={i === index}
               className={`h-1.5 rounded-full transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
                 i === index ? 'w-6 bg-accent' : 'w-1.5 bg-muted/40 hover:bg-muted'
@@ -108,7 +110,7 @@ export default function Carousel({ children, label, count }: CarouselProps) {
             type='button'
             onClick={() => page(-1)}
             disabled={atStart}
-            aria-label='Previous slide'
+            aria-label={labels.prev}
             className={arrow}
           >
             <LuArrowLeft aria-hidden='true' />
@@ -117,7 +119,7 @@ export default function Carousel({ children, label, count }: CarouselProps) {
             type='button'
             onClick={() => page(1)}
             disabled={atEnd}
-            aria-label='Next slide'
+            aria-label={labels.next}
             className={arrow}
           >
             <LuArrowRight aria-hidden='true' />
